@@ -35,22 +35,20 @@ func main() {
 
 func getNumber() int {
 	var number string
-	var res int
-	for true {
+	for {
 		fmt.Scanln(&number)
-		var tmp, err = strconv.Atoi(number)
-		if err == nil {
-			res = tmp
-			break
+		var res, err = strconv.Atoi(number)
+		if err != nil {
+			fmt.Print("Введите целое число: ")
+			continue
 		}
-		fmt.Print("Введите целое число: ")
+		return res
 	}
-	return res
 }
 
 func getOperation() string {
 	var operator string
-	for true {
+	for {
 		var input string
 		fmt.Scanln(&input)
 		if input == "+" || input == "-" || input == "*" || input == "/" {
