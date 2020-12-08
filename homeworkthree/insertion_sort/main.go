@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 
-	mArr := []int64{2}
+	mArr := []int64{2, 2, 1, 1, 44, 6, 4, 3, 43}
 	sortedSlice := insertionSort(mArr)
 	for _, el := range sortedSlice {
 		fmt.Println(el)
@@ -12,7 +12,8 @@ func main() {
 }
 
 func insertionSort(sliceToSort []int64) []int64 {
-	sortedSlice := sliceToSort
+	sortedSlice := make([]int64, len(sliceToSort))
+	copy(sortedSlice, sliceToSort)
 	for i := 1; i < len(sliceToSort); i++ {
 		currentElement := sortedSlice[i]
 		previousKey := i - 1

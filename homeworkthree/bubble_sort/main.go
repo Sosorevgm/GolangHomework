@@ -11,13 +11,12 @@ func main() {
 }
 
 func bubbleSort(sliceToSort []int64) []int64 {
-	result := sliceToSort
+	result := make([]int64, len(sliceToSort))
+	copy(result, sliceToSort)
 	for i := 0; i < len(result)-1; i++ {
 		for j := len(result) - 1; j > i; j-- {
 			if result[i] > result[j] {
-				var tmp = result[i]
-				result[i] = result[j]
-				result[j] = tmp
+				result[i], result[j] = result[j], result[i]
 			}
 		}
 	}
