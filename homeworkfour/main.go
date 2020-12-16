@@ -2,12 +2,30 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 var fibonacciMap = make(map[int64]int64)
 
 func main() {
-	fmt.Println(FibonacciComputation(6))
+	fmt.Print("Введите целое число: ")
+
+	var inputString string
+	for {
+		_, scanErr := fmt.Scanln(&inputString)
+		if scanErr != nil {
+			fmt.Println(scanErr)
+			break
+		}
+		number, err := strconv.Atoi(inputString)
+		if err != nil {
+			fmt.Print("Введите целое число: ")
+			continue
+		}
+		fmt.Println(FibonacciComputation(int64(number)))
+		break
+	}
+
 }
 
 func FibonacciComputation(num int64) int64 {
@@ -15,8 +33,8 @@ func FibonacciComputation(num int64) int64 {
 		return num
 	}
 
-	if fibonacciMap[num] != 0 {
-		return fibonacciMap[num]
+	if numberInMap, isContainNumber := fibonacciMap[num]; isContainNumber {
+		return numberInMap
 	} else {
 		fibonacciMap[num] = FibonacciComputation(num-1) + FibonacciComputation(num-2)
 	}
