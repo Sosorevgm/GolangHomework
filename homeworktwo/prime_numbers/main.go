@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/big"
 	"strconv"
 )
@@ -9,7 +10,10 @@ import (
 func main() {
 	fmt.Println("Введите положительное число")
 	var input string
-	fmt.Scanln(&input)
+	_, scanErr := fmt.Scanln(&input)
+	if scanErr != nil {
+		log.Println(scanErr)
+	}
 	var tmp, err = strconv.Atoi(input)
 	if err == nil {
 		var res, _ = getPrimeCount(int64(tmp))

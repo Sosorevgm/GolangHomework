@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
@@ -36,7 +37,11 @@ func main() {
 func getNumber() int {
 	var number string
 	for {
-		fmt.Scanln(&number)
+		var _, scanErr = fmt.Scanln(&number)
+		if scanErr != nil {
+			log.Println(scanErr)
+			os.Exit(1)
+		}
 		var res, err = strconv.Atoi(number)
 		if err != nil {
 			fmt.Print("Введите целое число: ")
@@ -50,7 +55,10 @@ func getOperation() string {
 	var operator string
 	for {
 		var input string
-		fmt.Scanln(&input)
+		_, scanErr := fmt.Scanln(&input)
+		if scanErr != nil {
+			log.Println(scanErr)
+		}
 		if input == "+" || input == "-" || input == "*" || input == "/" {
 			operator = input
 			break
