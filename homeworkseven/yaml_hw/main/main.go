@@ -1,13 +1,13 @@
 package main
 
 import (
+	"go/homework/homeworkseven/yaml_hw/configuration"
 	"log"
-	"yamlMod/yaml_hw/configuration"
 )
 
 func main() {
 
-	yamlConfig, err := configuration.ReadYamlConfig("conf.yaml")
+	yamlConfig, err := configuration.ReadYamlConfig("/Users/gregorysosorev/GolandProjects/GolangHomework/homeworkseven/yaml_hw/conf.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}
