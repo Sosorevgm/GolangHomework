@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math/big"
 	"strconv"
@@ -12,18 +13,23 @@ func main() {
 	fmt.Scanln(&input)
 	var tmp, err = strconv.Atoi(input)
 	if err == nil {
-		var res, _ = getPrimeCount(int64(tmp))
-		fmt.Println(res)
+		var res, getCountErr = getPrimeCount(int64(tmp))
+		if getCountErr == nil {
+			fmt.Println(res)
+		} else {
+			fmt.Println(getCountErr)
+		}
 	}
-
 }
 
 func getPrimeCount(num int64) (string, error) {
 	var counter int64
 	if num < 0 {
-		panic("Число должно быть положительным")
+		return "", errors.New("число должно быть положительным")
+		//return "", new(NegativeNumberError)
 	} else if num == 0 || num == 1 {
-		return "Найдено простых чисел: 0", nil
+		//return "", new(NegativeNumberError)
+		return "", errors.New("число должно быть положительным")
 	}
 	var i int64 = 2
 	for ; i < num; i++ {
@@ -33,3 +39,11 @@ func getPrimeCount(num int64) (string, error) {
 	}
 	return "Найдено простых чисел: " + strconv.Itoa(int(counter)), nil
 }
+
+//type NegativeNumberError struct {
+//	err string
+//}
+//
+//func (e *NegativeNumberError) Error() string {
+//	return "число должно быть положительным"
+//}
